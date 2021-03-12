@@ -32,6 +32,7 @@ api.put("/editarProducto/:id",md_autorizacion.ensureauth, ProductosControlador.E
 api.put("/eliminarProducto/:id",md_autorizacion.ensureauth, ProductosControlador.EliminarProductos)
 api.get("/StockVacio",md_autorizacion.ensureauth, ProductosControlador.ObtenerProductosStock0);
 api.get("/TopProductos", md_autorizacion.ensureauth, ProductosControlador.ObtenerProductosVendidos);
+api.get("/ProductoNombre/:Nombre", md_autorizacion.ensureauth, ProductosControlador.ObtenerNombreProductos);
 
     //Factura
 api.post("/iniciarFactura",md_autorizacion.ensureauth, FacturaControlador.IniciarFact)

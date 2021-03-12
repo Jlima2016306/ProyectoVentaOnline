@@ -115,8 +115,18 @@ function EditarProductos(req, res){
 
 
 //busc
-function ObtenerIDProductos(req, res){
-    
+function ObtenerNombreProductos(req, res){
+    var Nombre = req.params.Nombre
+    Productos.find({Nombre:Nombre},(err, ProductosObtenidos)=>{
+        Categorias.populate(ProductosObtenidos, {path:"idCategoria"},(err, Productos)=>{
+
+
+        if(err) return res.status(500).send({mensaje:"Error al obtener el producto "})
+        if(!Productos) return res.status(500).send({mensaje:"Error al obtener o No hay datos"})
+        return res.status(200).send({Productos})
+
+        })
+    })
 }
 
 
@@ -183,4 +193,4 @@ function ObtenerProductosVendidos(req, res){
 module.exports ={GuardarProducto,
     
     ObtenerProductos,
-    EliminarProductos,ObtenerProductosStock0,ObtenerProductosVendidos,ObtenerIDProductos,EditarProductos}
+    EliminarProductos,ObtenerProductosStock0,ObtenerProductosVendidos,ObtenerNombreProductos,EditarProductos}
